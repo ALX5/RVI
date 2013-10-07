@@ -26,6 +26,8 @@ using namespace StamperKinematicImpl;
 
 FalconDevice falcon;
 
+gmtl::Vec3d getMagneticForce(gmtl::Vec3d vec);
+
 //////////////////////////////////////////////////////////
 /// Ask libnifalcon to get the Falcon ready for action
 /// nothing clever here, straight from the examples
@@ -325,6 +327,28 @@ void FK(const gmtl::Vec3d& theta0, gmtl::Vec3d& pos)
 }
 
 
+gmtl::Vec3d getMagneticForce(gmtl::Vec3d vec) {
+
+	double dl = sqrt(vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2]);
+		
+	gmtl::Vec3d mO = -vec/dl;
+
+	double k = 200;
+	double r  = 0.02;
+
+	double forceMagnet = k*pow(r,3);
+
+	if(dl > r) {
+		mO = mO * (forceMagnet/pow(dl,2));
+	}
+	else {
+		mO = mO * k * dl;
+	}
+
+	return mO;
+}
+
+
 int main(int argc, char* argv[])
 {
 
@@ -450,27 +474,35 @@ int main(int argc, char* argv[])
 */		
 		
 		//Magnetic
-		double dl = sqrt(offsetPos[0]*offsetPos[0] + offsetPos[1]*offsetPos[1] + offsetPos[2]*offsetPos[2]);
-		
-		gmtl::Vec3d mo = -offsetPos/dl;
 
-		double k = 500;
-		double r  = 0.002;
+//		gmtl::Vec3d point1(-0.02,0.02,0.11);
+//		gmtl::Vec3d point2(-0.02,-0.02,0.0);		
+//		gmtl::Vec3d point3(0.02,-0.02,0.0);	
+//		gmtl::Vec3d point4(0.02,0.02,0.0);
 
-		double forceMagnet = k*pow(r,3);
+//		force = getMagneticForce(point1);
+//		force += getMagneticForce(point2);
+//		force += getMagneticForce(point3);
+//		force += getMagneticForce(point4);
 
-		if(dl < r)
-			force = mo * (forceMagnet/pow(dl,2));
-		else
-			force = mo * k * dl;
+		force = getMagneticForce(offsetPos);
+			
+
+		//dl = sqrt(m1[0]*m1[0] + m1[1]*m1[1] + m1[2]*m1[2]);
+
+		//m1 = -m1/dl;
+
+		//std::cout << offsetPos[0] << " " << offsetPos[1] << " " << offsetPos[2] << std::endl;
+
+
 
 		
 		//printf("distance : %f\n", dl);
-		std::cout << force << std::endl;
+		//std::cout << force << std::endl;
 		
 
-		double normeForce = sqrt(force[0]*force[0] + force[1]*force[1] + force[2]*force[2]);
-		ofs << normeForce << " " << dl << std::endl;
+		//double normeForce = sqrt(force[0]*force[0] + force[1]*force[1] + force[2]*force[2]);
+		//std::cout << normeForce << " " << dl << std::endl;
 		//ofs.close();
 		
 		////////////////////////////////////////////
@@ -521,4 +553,6 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+
+
 
