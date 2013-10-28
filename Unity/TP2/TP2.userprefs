@@ -1,10 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Camera_movement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InteractionSouris.cs">
     <Files>
-      <File FileName="Assets\Scripts\Animation_door.cs" Line="17" Column="22" />
-      <File FileName="Assets\Scripts\Camera_movement.cs" Line="24" Column="3" />
-      <File FileName="Assets\Scripts\Take_object.cs" Line="13" Column="5" />
+      <File FileName="Assets\Scripts\InteractionSouris.cs" Line="23" Column="29" />
+      <File FileName="Assets\Scripts\Rotation.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Animation_door.cs" Line="17" Column="46" />
+      <File FileName="Assets\Scripts\Camera_movement.cs" Line="15" Column="35" />
+      <File FileName="Assets\Scripts\Animation_hero.cs" Line="4" Column="46" />
+      <File FileName="Assets\Scripts\Take_key.cs" Line="23" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -5,7 +5,6 @@ public class Rotation : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		print (gameObject);
 	}
 	
 	// Update is called once per frame

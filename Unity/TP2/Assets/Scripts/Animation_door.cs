@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Animation_door : MonoBehaviour {
 	
-	public GameObject gameObject;
+	RaycastHit hit;
+	Ray ray;
 	
 	// Use this for initialization
 	void Start () {
@@ -11,13 +12,11 @@ public class Animation_door : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		RaycastHit hit;
-		if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition)))
-			if(Input.GetMouseButton(0)) {			
-				gameObject.animation.Play("door-open");
-			}	
-			else if(Input.GetMouseButton(1)) {
-				gameObject.animation.Play("door-close");
-			}	
+		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if(Physics.Raycast(ray,out hit,6))
+			if(Input.GetMouseButton(0) && hit.collider.Equals(gameObject.collider))			
+				GameObject.FindGameObjectWithTag("Door").animation.Play("door-open");
+			else if(Input.GetMouseButton(1) && hit.collider.Equals(gameObject.collider)) 
+				GameObject.FindGameObjectWithTag("Door").animation.Play("door-close");
 	}
 }
