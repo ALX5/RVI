@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head> 
+		<meta charset="UTF-8" />
+	</head>
+	<canvas id="webglCanvas" width="512" height="512">
+	</canvas>
+	<video id="myVideo " src="repas.webm" autoplay="true" controls="true"></video >
+	<script type="text/javascript" src="video360.js"> </script>	
+	<!−−Shaders−−>
+	<script id="hello−fs" type="x−shader/x−fragment">
+	precision highp float; 
+
+	void main ( void ) {
+		gl_FragColor=vec4(1.0,0.0,0.0,0.0);
+	}
+	</script>
+	<script id="hello−vs" type="x−shader/x−vertex">
+	attribute vec4 vertex;
+
+	void main ( void ) {
+		gl_Position = vertex ;
+	}
+	</script>
+	<script type="text/javascript">
+		window.addEventListener('load',main,false);	
+	</script>
+</html>
