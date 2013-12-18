@@ -1,0 +1,38 @@
+// Question 1
+quantile(v,c(.90))
+
+// Question 2
+pdf(file=”test.pdf”)
+boxplot(v)
+barplot(v)
+dev.off()
+
+// Question 3
+moyenne = function(technique) {
+	data = read.table("data.txt", header=TRUE, sep=",")
+	sub=subset(data,Technique==technique)
+	moy=mean(sub[,"Time"]);
+	return(moy);
+}
+
+// Question 4
+techniques = c("SemPoint","Control","SurfPad") # data
+sapply(techniques, moyenne)
+
+// Question 5
+barplot(sapply(techniques, moyenne))
+
+// Question 6
+errors = subset(data,Err==1)
+
+// Question 7
+confidence = function(technique) {
+	data = read.table("data.txt", header=TRUE, sep=",")
+	sub=subset(data,Technique==technique)$Time
+	ecartType = sd(sub)
+	n = sqrt(length(sub))
+	ci = 1.96*(ecartType/n)
+	return(ci)
+}
+
+// Question 8 

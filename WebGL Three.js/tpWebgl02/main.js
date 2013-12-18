@@ -1,10 +1,9 @@
 var gl;
-
 var cube;
-
 var renderer;
 var scene;
 var camera;
+var x, y;
 
 function initGL(){
 	webglCanvas=document.getElementById("webglCanvas");
@@ -57,7 +56,7 @@ function updateData() {
 	cube.rotateOnAxis(new THREE.Vector3(1,0,0),angleX);
 	//cube.translateOnAxis(new THREE.Vector3(1,0,0),0.5);	
 	var projector=new THREE.Projector(); 
-	var ray=projector.pickingRay(new THREE.Vector3(0,0,0),camera);
+	var ray=projector.pickingRay(new THREE.Vector3(x,y,0),camera);
 	var arrayIntersect=ray.intersectObjects(scene.children); 
 	if (arrayIntersect.length>0) { 
 		var first = arrayIntersect[0]; 
@@ -91,13 +90,11 @@ function handleKeyDown(event) {
 		case 65 /* a */: camera.rotateOnAxis(new THREE.Vector3(1,0,0),0.02);break; 
 		case 69 /* e */: camera.rotateOnAxis(new THREE.Vector3(-1,0,0),0.02);break; 
 	}
-} 
+}
 
-window.addEventListener("keydown",handleKeyDown,false);
-
-function onclick_page(event) {
-  x = event.clientX;
-  y = event.clientY;
+function onClick(event) {
+	x = ((event.layerX-webglCanvas.offsetLeft)/webglCanvas.width-0.5)*2;
+	y = (((webglCanvas.height-1.0)-(event.layerY-webglCanvas.offsetTop))/webglCanvas.height-0.5)*2;
 }
 
 function main(){

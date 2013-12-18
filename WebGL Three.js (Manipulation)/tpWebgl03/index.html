@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head> 
+		<meta charset="UTF-8" />
+		<title>tpWebgl03</title>
+
+		<canvas id="webglCanvas" width="512" height="512"></canvas>
+	</head>
+	<body>
+		<script type="text/javascript" src="three.min.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="fly.js"></script>			
+		<script type="text/javascript">window.addEventListener('load',main,false);</script>
+		<script type="text/javascript">window.addEventListener("keydown",handleKeyDown,false);</script>
+		<script type="text/javascript">window.addEventListener("click",onClick,false);</script>
+		<script type="text/javascript">webglCanvas.addEventListener("mousedown",handleMouseDown,false);</script> 
+		<script type="text/javascript">webglCanvas.addEventListener("mouseup",handleMouseUp,false);</script> 
+		<script type="text/javascript">webglCanvas.addEventListener("mousemove",handleMouseMove,false);</script>
+		<script type="text/javascript">webglCanvas.addEventListener("mousewheel",handleMousewheel,false); </script>
+		<script type="text/javascript">webglCanvas.addEventListener("DOMMouseScroll",handleMousewheel,false);</script>
+		
+		<script type="text/javascript">
+			function directe() {
+				rotationManip=false;
+				indirecteManip=false;
+				directeManip=true;
+			}
+			function indirecte() {
+				rotationManip=false;
+				indirecteManip=true;
+				directeManip=false;
+			}
+			function rotation() {
+				rotationManip=true;
+				indirecteManip=false;
+				directeManip=false;
+			}
+		</script>
+		<font size="1"><br></font> 
+		<input type="button" name="directe" value="Manipulation directe" onclick="directe()">
+		<input type="button" name="indirecte" value="Manipulation indirecte" onclick="indirecte()"> 		
+		<input type="button" name="rotation" value="Manipulation en rotation" onclick="rotation()"> 	
+	</body>
+</html>
